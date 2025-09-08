@@ -10,4 +10,13 @@ import java.util.List;
 public interface JpaHotelRepository extends JpaRepository<Hotel, Integer> {
     @Query("SELECT new com.example.DisneyBookingBackend.models.dto.HotelNameDto(h.id, h.hotelName) FROM Hotel h")
     List<HotelNameDto> getAllHotelNames();
+
+    @Query("""
+        SELECT DISTINCT h FROM Hotel h
+        JOIN h.themes t
+        WHERE h.address LIKE %:address%
+          AND t.themeName IN :themeNames
+          AND h.isDeleted = false
+        """)
+    List<Hotel> findHotelsByCityAndThemes(String address, List<String> themeNames);
 }

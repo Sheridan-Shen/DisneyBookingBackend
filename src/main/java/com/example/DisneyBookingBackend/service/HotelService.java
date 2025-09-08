@@ -3,6 +3,7 @@ package com.example.DisneyBookingBackend.service;
 import com.example.DisneyBookingBackend.models.Hotel;
 import com.example.DisneyBookingBackend.models.Theme;
 import com.example.DisneyBookingBackend.models.dto.HotelNameDto;
+import com.example.DisneyBookingBackend.models.dto.HotelRequestDto;
 import com.example.DisneyBookingBackend.repository.hotel.HotelDBRepository;
 import com.example.DisneyBookingBackend.repository.theme.ThemeDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,5 +41,15 @@ public class HotelService {
         }
         hotel.setThemes(persistedThemes);
         return hotelDBRepository.save(hotel);
+    }
+
+    public List<Hotel> getHotelsByAddressAndThemes(HotelRequestDto hotelRequestDto) {
+        if (hotelRequestDto.getThemes() == null || hotelRequestDto.getThemes().isEmpty()) {
+            return List.of();
+        }
+        return hotelDBRepository.findHotelsByAddressAndThemes(
+                hotelRequestDto.getAddress(),
+                hotelRequestDto.getThemes()
+        );
     }
 }

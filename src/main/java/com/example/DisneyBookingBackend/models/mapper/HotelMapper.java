@@ -13,7 +13,8 @@ public class HotelMapper {
     public HotelResponseDto toResponse(Hotel hotel) {
         HotelResponseDto hotelResponseDto = new HotelResponseDto();
         BeanUtils.copyProperties(hotel, hotelResponseDto);
-        hotelResponseDto.setSuccess(true);
+        hotelResponseDto.setName(hotel.getHotelName());
+        hotelResponseDto.setRating(hotel.getRatings());
         return hotelResponseDto;
     }
 

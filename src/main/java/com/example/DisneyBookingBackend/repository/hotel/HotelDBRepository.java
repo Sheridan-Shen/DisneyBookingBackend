@@ -20,6 +20,10 @@ public class HotelDBRepository {
         return jpaHotelRepository.getAllHotelNames();
     }
 
+    public List<Hotel> findHotelsByAddressAndThemes(String address, List<String> themeNames) {
+        return jpaHotelRepository.findHotelsByCityAndThemes(address, themeNames);
+    }
+
 
     public Hotel save(Hotel hotel) {
         return jpaHotelRepository.save(hotel);

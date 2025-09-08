@@ -2,36 +2,37 @@ package com.example.DisneyBookingBackend.models.dto;
 
 import com.example.DisneyBookingBackend.models.Theme;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
 public class HotelResponseDto {
-    private int hotelId;
-    private String hotelName;
+    private int id;
+    private String name;
     private String address;
     private String description;
-    private Float ratings;
+    private Float rating;
+    private BigDecimal minimumPrice = BigDecimal.valueOf(1000);
+    private List<String> images = new ArrayList<>();
     private List<Theme> themes = new ArrayList<>();
-
-    private Boolean success;
 
     public HotelResponseDto() {
     }
 
-    public int getHotelId() {
-        return hotelId;
+    public int getId() {
+        return id;
     }
 
-    public void setHotelId(int hotelId) {
-        this.hotelId = hotelId;
+    public void setId(int id) {
+        this.id = id;
     }
 
-    public String getHotelName() {
-        return hotelName;
+    public String getName() {
+        return name;
     }
 
-    public void setHotelName(String hotelName) {
-        this.hotelName = hotelName;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getAddress() {
@@ -50,12 +51,12 @@ public class HotelResponseDto {
         this.description = description;
     }
 
-    public Float getRatings() {
-        return ratings;
+    public Float getRating() {
+        return rating;
     }
 
-    public void setRatings(Float ratings) {
-        this.ratings = ratings;
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
     public List<Theme> getThemes() {
@@ -66,11 +67,19 @@ public class HotelResponseDto {
         this.themes = themes;
     }
 
-    public Boolean getSuccess() {
-        return success;
+    public BigDecimal getMinimumPrice() {
+        return minimumPrice;
     }
 
-    public void setSuccess(Boolean success) {
-        this.success = success;
+    public void setMinimumPrice(BigDecimal minimumPrice) {
+        this.minimumPrice = minimumPrice;
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }
