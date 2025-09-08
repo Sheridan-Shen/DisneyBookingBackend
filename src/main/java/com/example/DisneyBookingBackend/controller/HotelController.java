@@ -1,6 +1,8 @@
 package com.example.DisneyBookingBackend.controller;
 
 import com.example.DisneyBookingBackend.models.Hotel;
+import com.example.DisneyBookingBackend.models.dto.HotelResponseDto;
+import com.example.DisneyBookingBackend.models.mapper.HotelMapper;
 import com.example.DisneyBookingBackend.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -15,11 +17,15 @@ import java.util.List;
 @CrossOrigin(origins = "*")
 public class HotelController {
     @Autowired
-    HotelService hotelService;
+    private HotelService hotelService;
+
+    @Autowired
+    private HotelMapper hotelMapper;
 
     @GetMapping()
-    public List<Hotel> getAllHotels() {
-        return hotelService.getAllHotels();
+    public List<HotelResponseDto> getAllHotels() {
+        List<Hotel> hotels = hotelService.getAllHotels();
+        return hotelMapper.toResponseList(hotels);
     }
 
     @GetMapping("/names")
