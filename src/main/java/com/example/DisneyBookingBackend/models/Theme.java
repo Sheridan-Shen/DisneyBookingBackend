@@ -1,5 +1,6 @@
 package com.example.DisneyBookingBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import java.util.ArrayList;
@@ -15,6 +16,7 @@ public class Theme {
     @Column(unique = true, nullable = false)
     private String themeName;
 
+    @JsonIgnore
     @ManyToMany(mappedBy = "themes")
     private List<Hotel> hotels = new ArrayList<>();
 
