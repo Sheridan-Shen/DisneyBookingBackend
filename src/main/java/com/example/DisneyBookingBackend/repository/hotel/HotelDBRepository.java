@@ -1,6 +1,7 @@
 package com.example.DisneyBookingBackend.repository.hotel;
 
 import com.example.DisneyBookingBackend.models.Hotel;
+import com.example.DisneyBookingBackend.models.dto.HotelNameDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -15,7 +16,7 @@ public class HotelDBRepository {
         return jpaHotelRepository.findAll();
     }
 
-    public List<String> getAllHotelsNames() {
+    public List<HotelNameDto> getAllHotelsNames() {
         return jpaHotelRepository.getAllHotelNames();
     }
 }

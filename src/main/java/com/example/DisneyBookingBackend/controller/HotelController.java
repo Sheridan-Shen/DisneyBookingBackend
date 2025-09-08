@@ -1,6 +1,7 @@
 package com.example.DisneyBookingBackend.controller;
 
 import com.example.DisneyBookingBackend.models.Hotel;
+import com.example.DisneyBookingBackend.models.dto.HotelNameDto;
 import com.example.DisneyBookingBackend.models.dto.HotelResponseDto;
 import com.example.DisneyBookingBackend.models.mapper.HotelMapper;
 import com.example.DisneyBookingBackend.service.HotelService;
@@ -29,7 +30,7 @@ public class HotelController {
     }
 
     @GetMapping("/names")
-    public List<String> getHotels() {
+    public List<HotelNameDto> getHotels() {
         return hotelService.getAllHotelNames();
     }
 }

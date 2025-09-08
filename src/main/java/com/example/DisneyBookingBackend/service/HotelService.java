@@ -1,6 +1,7 @@
 package com.example.DisneyBookingBackend.service;
 
 import com.example.DisneyBookingBackend.models.Hotel;
+import com.example.DisneyBookingBackend.models.dto.HotelNameDto;
 import com.example.DisneyBookingBackend.repository.hotel.HotelDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,7 @@ public class HotelService {
         return hotelDBRepository.getAllHotels();
     }
 
-    public List<String> getAllHotelNames() {
+    public List<HotelNameDto> getAllHotelNames() {
         return hotelDBRepository.getAllHotelsNames();
     }
 }
