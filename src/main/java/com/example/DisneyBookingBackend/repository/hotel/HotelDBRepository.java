@@ -19,4 +19,11 @@ public class HotelDBRepository {
     public List<HotelNameDto> getAllHotelsNames() {
         return jpaHotelRepository.getAllHotelNames();
     }
+
+
+    public Hotel save(Hotel hotel) {
+        return jpaHotelRepository.save(hotel);
+    }
+
+
 }
