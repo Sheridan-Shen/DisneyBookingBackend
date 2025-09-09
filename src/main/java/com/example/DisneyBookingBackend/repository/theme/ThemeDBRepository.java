@@ -24,5 +24,9 @@ public class ThemeDBRepository {
     public Theme save(Theme theme) {
         return jpaThemeRepository.save(theme);
     }
+
+    public Theme findById(Integer id) {
+        return jpaThemeRepository.findById(id).orElse(null);
+    }
 }
 
