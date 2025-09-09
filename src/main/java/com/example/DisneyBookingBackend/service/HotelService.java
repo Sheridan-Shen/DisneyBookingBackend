@@ -18,6 +18,7 @@ public class HotelService {
     private HotelDBRepository hotelDBRepository;
     @Autowired
     private ThemeDBRepository themeDBRepository;
+
     public List<Hotel> getAllHotels() {
         return hotelDBRepository.getAllHotels();
     }
@@ -66,7 +67,7 @@ public class HotelService {
         );
     }
 
-    public List<Hotel> getHotelsByThemes(List<String> themeNames) {
-        return hotelDBRepository.findHotelsByThemeNames(themeNames);
+    public List<String> getAllHotelCities() {
+        return hotelDBRepository.getAllHotelCities();
     }
 }

@@ -32,4 +32,8 @@ public class HotelDBRepository {
     public List<Hotel> findHotelsByThemeNames(List<String> themeNames) {
         return jpaHotelRepository.findHotelsByThemeNames(themeNames);
     }
+
+    public List<String> getAllHotelCities() {
+        return jpaHotelRepository.getAllHotelCities();
+    }
 }

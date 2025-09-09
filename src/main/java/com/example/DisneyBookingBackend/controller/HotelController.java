@@ -43,4 +43,11 @@ public class HotelController {
     public Hotel addHotel(@RequestBody Hotel hotel) {
         return hotelService.addHotel(hotel);
     }
+
+    @GetMapping("/cities")
+    public ResponseEntity<List<String>> getAllHotelCities() {
+        List<String> cities = hotelService.getAllHotelCities();
+        return ResponseEntity.ok(cities);
+    }
+
 }
