@@ -12,6 +12,7 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 @Entity
 @Table(name = "room")
@@ -20,15 +21,13 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roomId;
 
+    private String roomName;
+
     private Integer hotelId;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "theme_id")
     private Theme theme;
-
-    private Integer capacity;
-
-    private String bedConfig;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal price;
@@ -37,16 +36,18 @@ public class Room {
     @Column(columnDefinition = "TEXT")
     private String description;
 
+    private Float rating;
+
+    private List<String> imageUrls;
+
     private Boolean isDeleted = false;
 
     public Room() {
 
     }
 
-    public Room(Theme theme, Integer capacity, String bedConfig, BigDecimal price, String description) {
+    public Room(Theme theme, BigDecimal price, String description) {
         this.theme = theme;
-        this.capacity = capacity;
-        this.bedConfig = bedConfig;
         this.price = price;
         this.description = description;
     }
@@ -75,22 +76,6 @@ public class Room {
         this.theme = theme;
     }
 
-    public Integer getCapacity() {
-        return capacity;
-    }
-
-    public void setCapacity(Integer capacity) {
-        this.capacity = capacity;
-    }
-
-    public String getBedConfig() {
-        return bedConfig;
-    }
-
-    public void setBedConfig(String bedConfig) {
-        this.bedConfig = bedConfig;
-    }
-
     public BigDecimal getPrice() {
         return price;
     }
@@ -113,5 +98,13 @@ public class Room {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
     }
 }
