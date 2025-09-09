@@ -21,6 +21,9 @@ public class Room {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roomId;
 
+    // 房间号，手动赋值
+    private Integer roomNumber;
+
     private String roomName;
 
     private Integer hotelId;
@@ -38,7 +41,7 @@ public class Room {
 
     private Float rating;
 
-    private List<String> imageUrls;
+    private String imageUrls;
 
     private Boolean isDeleted = false;
 
@@ -58,6 +61,14 @@ public class Room {
 
     public void setRoomId(Integer roomId) {
         this.roomId = roomId;
+    }
+
+    public Integer getRoomNumber() {
+        return roomNumber;
+    }
+
+    public void setRoomNumber(Integer roomNumber) {
+        this.roomNumber = roomNumber;
     }
 
     public Integer getHotelId() {
@@ -106,5 +117,29 @@ public class Room {
 
     public void setRoomName(String roomName) {
         this.roomName = roomName;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
+    }
+
+    public String getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(String imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    public Boolean getDeleted() {
+        return isDeleted;
+    }
+
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
     }
 }

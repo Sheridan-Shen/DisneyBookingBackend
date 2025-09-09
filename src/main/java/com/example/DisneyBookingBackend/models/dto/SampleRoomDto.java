@@ -7,14 +7,14 @@ public class SampleRoomDto {
     private Integer roomId;
     private String roomName;
     private BigDecimal price;
-    private List<String> imageUrls;
+    private String imageUrls;
     private String description;
     private Float rating;
 
     public SampleRoomDto() {
     }
 
-    public SampleRoomDto(Integer roomId, String roomName, BigDecimal price, List<String> imageUrls, String description, Float rating) {
+    public SampleRoomDto(Integer roomId, String roomName, BigDecimal price, String imageUrls, String description, Float rating) {
         this.roomId = roomId;
         this.roomName = roomName;
         this.price = price;
@@ -47,11 +47,11 @@ public class SampleRoomDto {
         this.price = price;
     }
 
-    public List<String> getImageUrls() {
+    public String getImageUrls() {
         return imageUrls;
     }
 
-    public void setImageUrls(List<String> imageUrls) {
+    public void setImageUrls(String imageUrls) {
         this.imageUrls = imageUrls;
     }
 
