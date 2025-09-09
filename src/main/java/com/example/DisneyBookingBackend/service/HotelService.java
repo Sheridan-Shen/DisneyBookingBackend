@@ -44,12 +44,29 @@ public class HotelService {
     }
 
     public List<Hotel> getHotelsByAddressAndThemes(HotelRequestDto hotelRequestDto) {
-        if (hotelRequestDto.getThemes() == null || hotelRequestDto.getThemes().isEmpty()) {
-            return List.of();
+        if (hotelRequestDto.getAddress() == null && hotelRequestDto.getThemes().isEmpty()) {
+            return hotelDBRepository.getAllHotels();
         }
+
+        if (hotelRequestDto.getAddress() != null && hotelRequestDto.getThemes().isEmpty()) {
+            List<String> allThemeNames = themeDBRepository.getAllThemeNames();
+            return hotelDBRepository.findHotelsByAddressAndThemes(
+                    hotelRequestDto.getAddress(),
+                    allThemeNames
+            );
+        }
+
+        if (hotelRequestDto.getAddress() == null && !hotelRequestDto.getThemes().isEmpty()) {
+            return hotelDBRepository.findHotelsByThemeNames(hotelRequestDto.getThemes());
+        }
+
         return hotelDBRepository.findHotelsByAddressAndThemes(
                 hotelRequestDto.getAddress(),
                 hotelRequestDto.getThemes()
         );
+    }
+
+    public List<Hotel> getHotelsByThemes(List<String> themeNames) {
+        return hotelDBRepository.findHotelsByThemeNames(themeNames);
     }
 }

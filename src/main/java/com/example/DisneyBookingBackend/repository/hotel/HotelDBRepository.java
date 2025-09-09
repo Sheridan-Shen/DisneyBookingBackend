@@ -29,5 +29,7 @@ public class HotelDBRepository {
         return jpaHotelRepository.save(hotel);
     }
 
-
+    public List<Hotel> findHotelsByThemeNames(List<String> themeNames) {
+        return jpaHotelRepository.findHotelsByThemeNames(themeNames);
+    }
 }

@@ -28,5 +28,9 @@ public class ThemeDBRepository {
     public Theme findById(Integer id) {
         return jpaThemeRepository.findById(id).orElse(null);
     }
+
+    public List<String> getAllThemeNames() {
+        return jpaThemeRepository.getAllThemeNames();
+    }
 }
 

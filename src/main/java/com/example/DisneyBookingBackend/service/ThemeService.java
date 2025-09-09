@@ -6,6 +6,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Component
 public class ThemeService {
     @Autowired
@@ -21,6 +23,10 @@ public class ThemeService {
 
     public Theme getThemeById(Integer id) {
         return themeDBRepository.findById(id);
+    }
+
+    public List<String> getAllThemeNames() {
+        return themeDBRepository.getAllThemeNames();
     }
 }
 

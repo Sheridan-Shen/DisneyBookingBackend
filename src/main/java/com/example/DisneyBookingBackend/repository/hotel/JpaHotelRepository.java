@@ -19,4 +19,7 @@ public interface JpaHotelRepository extends JpaRepository<Hotel, Integer> {
           AND h.isDeleted = false
         """)
     List<Hotel> findHotelsByCityAndThemes(String address, List<String> themeNames);
+
+    @Query("SELECT DISTINCT h FROM Hotel h JOIN h.themes t WHERE t.themeName IN :themeNames")
+    List<Hotel> findHotelsByThemeNames(List<String> themeNames);
 }
