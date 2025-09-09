@@ -10,11 +10,10 @@ import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*")
 public class RoomController {
     @Autowired
-    private RoomService roomCService;
-
+    private RoomService roomService;
 
     @PostMapping("/add")
     public Room addRoom(@RequestBody Room room) {
-        return roomCService.addRoom(room);
+        return roomService.addRoom(room);
     }
 }
