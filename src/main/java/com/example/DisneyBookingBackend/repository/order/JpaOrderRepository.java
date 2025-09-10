@@ -45,4 +45,13 @@ public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
             @Param("checkOut") LocalDate checkOut);
 
     List<Order> findByUserIdAndIsDeletedFalse(Integer userId);
+
+    @Query("SELECT o.rating FROM Order o " +
+            "WHERE o.hotelId = :hotelId " +
+            "  AND o.themeId = :themeId " +
+            "  AND o.isDeleted = false " +
+            "  AND o.rating IS NOT NULL")
+    List<Float> selectRatingsByHotelIdAndThemeId(
+            @Param("hotelId") Integer hotelId,
+            @Param("themeId") Integer themeId);
 }

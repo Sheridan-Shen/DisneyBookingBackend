@@ -6,6 +6,7 @@ import com.example.DisneyBookingBackend.models.Theme;
 import com.example.DisneyBookingBackend.models.dto.AvailableThemeRoomDto;
 import com.example.DisneyBookingBackend.models.dto.SampleRoomDto;
 import com.example.DisneyBookingBackend.models.mapper.RoomMapper;
+import com.example.DisneyBookingBackend.repository.order.OrderDBRepository;
 import com.example.DisneyBookingBackend.repository.room.RoomDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +23,9 @@ import java.util.stream.Collectors;
 public class RoomService {
     @Autowired
     private RoomDBRepository roomDBRepository;
+
+    @Autowired
+    private OrderDBRepository orderDBRepository;
 
     @Autowired
     private ThemeService themeService;
@@ -108,7 +112,18 @@ public class RoomService {
 
             SampleRoomDto sampleRoomDto = roomMapper.toSampleRoomDto(rooms.get(0));
 
-            AvailableThemeRoomDto dto = new AvailableThemeRoomDto(theme.getThemeName(), rooms.size(), 4.8F, sampleRoomDto);
+            List<Float> ratings = orderDBRepository.selectRatingsByHotelIdAndThemeId(rooms.get(0).getHotelId(), theme.getId());
+            float averageRating = 0.0F;
+            if (!ratings.isEmpty()) {
+                float sum = 0.0F;
+                for (Float rating : ratings) {
+                    sum += rating;
+                }
+                averageRating = sum / ratings.size();
+            }
+            averageRating = Math.round(averageRating * 10) / 10.0F;
+
+            AvailableThemeRoomDto dto = new AvailableThemeRoomDto(theme.getThemeName(), rooms.size(), averageRating, sampleRoomDto);
             result.add(dto);
         }
         return result;

@@ -42,4 +42,8 @@ public class OrderDBRepository {
     public List<Order> getOrdersByUserId(Integer userId) {
         return jpaOrderRepository.findByUserIdAndIsDeletedFalse(userId);
     }
+
+    public List<Float> selectRatingsByHotelIdAndThemeId(Integer hotelId, Integer themeId) {
+        return jpaOrderRepository.selectRatingsByHotelIdAndThemeId(hotelId, themeId);
+    }
 }
