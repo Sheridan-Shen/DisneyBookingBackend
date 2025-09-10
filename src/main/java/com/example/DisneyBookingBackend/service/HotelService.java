@@ -70,4 +70,8 @@ public class HotelService {
     public List<String> getAllHotelCities() {
         return hotelDBRepository.getAllHotelCities();
     }
+
+    public String getHotelNameById(Integer hotelId) {
+        return hotelDBRepository.getHotelNameById(hotelId);
+    }
 }

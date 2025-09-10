@@ -25,4 +25,7 @@ public interface JpaHotelRepository extends JpaRepository<Hotel, Integer> {
 
     @Query("SELECT DISTINCT h.address FROM Hotel h WHERE h.isDeleted = false")
     List<String> getAllHotelCities();
+
+    @Query("SELECT DISTINCT h.hotelName FROM Hotel h WHERE h.id = :hotelId")
+    String getHotelNameById(Integer hotelId);
 }

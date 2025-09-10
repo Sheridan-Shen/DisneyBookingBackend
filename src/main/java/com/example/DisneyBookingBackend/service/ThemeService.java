@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Component
+@Service
 public class ThemeService {
     @Autowired
     private ThemeDBRepository themeDBRepository;
@@ -27,6 +27,10 @@ public class ThemeService {
 
     public List<String> getAllThemeNames() {
         return themeDBRepository.getAllThemeNames();
+    }
+
+    public Integer getThemeIdByName(String themeName) {
+        return themeDBRepository.getThemeIdByName(themeName);
     }
 }
 

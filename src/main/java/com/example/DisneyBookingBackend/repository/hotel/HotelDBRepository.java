@@ -36,4 +36,8 @@ public class HotelDBRepository {
     public List<String> getAllHotelCities() {
         return jpaHotelRepository.getAllHotelCities();
     }
+
+    public  String getHotelNameById(Integer hotelId) {
+        return jpaHotelRepository.getHotelNameById(hotelId);
+    }
 }

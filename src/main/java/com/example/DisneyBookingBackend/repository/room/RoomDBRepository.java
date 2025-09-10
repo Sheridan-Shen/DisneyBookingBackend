@@ -23,5 +23,9 @@ public class RoomDBRepository {
     public List<Room> getAllRooms() {
         return jpaRoomRepository.findAll();
     }
+
+    public List<Integer> getAllRoomIds(Integer hotelId, Integer themeId) {
+        return jpaRoomRepository.getAllRoomIdsByHotelIdAndThemeId(hotelId, themeId);
+    }
 }
 

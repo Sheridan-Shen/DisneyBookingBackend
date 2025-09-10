@@ -11,5 +11,7 @@ public interface JpaRoomRepository extends JpaRepository<Room, Integer> {
 //    @Query("SELECT r FROM Room r WHERE r.hotel_id = ?1 AND r.isDeleted = false")
     @NativeQuery("SELECT * FROM room WHERE hotel_id = ?1 AND is_deleted = false")
     List<Room> findByHotelIdAndIsDeletedFalse(Integer hotelId);
+
+    List<Integer> getAllRoomIdsByHotelIdAndThemeId(Integer hotelId, Integer themeId);
 }
 

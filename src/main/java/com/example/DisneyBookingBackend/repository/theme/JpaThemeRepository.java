@@ -8,6 +8,9 @@ import java.util.List;
 
 public interface JpaThemeRepository extends JpaRepository<Theme, Integer> {
     @Query("SELECT t.themeName FROM Theme t")
-    public List<String> getAllThemeNames();
+    List<String> getAllThemeNames();
+
+    @Query("SELECT t.id FROM Theme t WHERE t.themeName = :themeName")
+    Integer getThemeIdByName(String themeName);
 }
 

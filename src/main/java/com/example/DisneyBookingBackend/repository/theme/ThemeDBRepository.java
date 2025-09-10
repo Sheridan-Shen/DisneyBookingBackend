@@ -32,5 +32,9 @@ public class ThemeDBRepository {
     public List<String> getAllThemeNames() {
         return jpaThemeRepository.getAllThemeNames();
     }
+
+    public Integer getThemeIdByName(String themeName) {
+        return jpaThemeRepository.getThemeIdByName(themeName);
+    }
 }
 
