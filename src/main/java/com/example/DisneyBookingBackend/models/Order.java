@@ -2,13 +2,10 @@ package com.example.DisneyBookingBackend.models;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.Lob;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -23,49 +20,55 @@ public class Order {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer orderId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "user_id")
-    private User user;
+    private Integer hotelId;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "hotel_id")
-    private Hotel hotel;
+    private String hotelName;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "room_id")
-    private Room room;
+    private Integer themeId;
+
+    private String themeName;
+
+    private String roomIds;
+
+    // 房间号，例如401,402
+    private String roomNumbers;
+
+    private String roomName;
+
+    private Integer roomCount;
+
+    private LocalDate checkIn;
+
+    private LocalDate checkOut;
+
+    @CreationTimestamp
+    private Instant orderDate;
 
     @Column(precision = 10, scale = 2)
     private BigDecimal totalPrice;
+
+    private Integer userId;
+
+    private String userName;
+
+    private String phone;
+
+    private String orderRemark;
 
     private Status status;
 
     @Lob
     @Column(columnDefinition = "TEXT")
-    private String orderDetails;
+    private String comment;
 
-    private LocalDate checkInDate;
-    private LocalDate checkOutDate;
+    private Float rating;
 
-    @CreationTimestamp
-    @Column(nullable = false, updatable = false)
-    private Instant createdAt;
+    private Instant ratingDate;
 
     private Boolean isDeleted = false;
 
     public Order() {
 
-    }
-
-    public Order(User user, Hotel hotel, Room room, BigDecimal totalPrice, Status status, String orderDetails, LocalDate checkInDate, LocalDate checkOutDate) {
-        this.user = user;
-        this.hotel = hotel;
-        this.room = room;
-        this.totalPrice = totalPrice;
-        this.status = status;
-        this.orderDetails = orderDetails;
-        this.checkInDate = checkInDate;
-        this.checkOutDate = checkOutDate;
     }
 
     public Integer getOrderId() {
@@ -76,28 +79,92 @@ public class Order {
         this.orderId = orderId;
     }
 
-    public User getUser() {
-        return user;
+    public Integer getHotelId() {
+        return hotelId;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setHotelId(Integer hotelId) {
+        this.hotelId = hotelId;
     }
 
-    public Hotel getHotel() {
-        return hotel;
+    public String getHotelName() {
+        return hotelName;
     }
 
-    public void setHotel(Hotel hotel) {
-        this.hotel = hotel;
+    public void setHotelName(String hotelName) {
+        this.hotelName = hotelName;
     }
 
-    public Room getRoom() {
-        return room;
+    public Integer getThemeId() {
+        return themeId;
     }
 
-    public void setRoom(Room room) {
-        this.room = room;
+    public void setThemeId(Integer themeId) {
+        this.themeId = themeId;
+    }
+
+    public String getThemeName() {
+        return themeName;
+    }
+
+    public void setThemeName(String themeName) {
+        this.themeName = themeName;
+    }
+
+    public String getRoomIds() {
+        return roomIds;
+    }
+
+    public void setRoomIds(String roomIds) {
+        this.roomIds = roomIds;
+    }
+
+    public String getRoomNumbers() {
+        return roomNumbers;
+    }
+
+    public void setRoomNumbers(String roomNumbers) {
+        this.roomNumbers = roomNumbers;
+    }
+
+    public String getRoomName() {
+        return roomName;
+    }
+
+    public void setRoomName(String roomName) {
+        this.roomName = roomName;
+    }
+
+    public Integer getRoomCount() {
+        return roomCount;
+    }
+
+    public void setRoomCount(Integer roomCount) {
+        this.roomCount = roomCount;
+    }
+
+    public LocalDate getCheckIn() {
+        return checkIn;
+    }
+
+    public void setCheckIn(LocalDate checkIn) {
+        this.checkIn = checkIn;
+    }
+
+    public LocalDate getCheckOut() {
+        return checkOut;
+    }
+
+    public void setCheckOut(LocalDate checkOut) {
+        this.checkOut = checkOut;
+    }
+
+    public Instant getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(Instant orderDate) {
+        this.orderDate = orderDate;
     }
 
     public BigDecimal getTotalPrice() {
@@ -108,6 +175,38 @@ public class Order {
         this.totalPrice = totalPrice;
     }
 
+    public Integer getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Integer userId) {
+        this.userId = userId;
+    }
+
+    public String getUserName() {
+        return userName;
+    }
+
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getOrderRemark() {
+        return orderRemark;
+    }
+
+    public void setOrderRemark(String orderRemark) {
+        this.orderRemark = orderRemark;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -116,43 +215,35 @@ public class Order {
         this.status = status;
     }
 
-    public String getOrderDetails() {
-        return orderDetails;
+    public Float getRating() {
+        return rating;
     }
 
-    public void setOrderDetails(String orderDetails) {
-        this.orderDetails = orderDetails;
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
-    public LocalDate getCheckInDate() {
-        return checkInDate;
+    public String getComment() {
+        return comment;
     }
 
-    public void setCheckInDate(LocalDate checkInDate) {
-        this.checkInDate = checkInDate;
+    public void setComment(String comment) {
+        this.comment = comment;
     }
 
-    public LocalDate getCheckOutDate() {
-        return checkOutDate;
-    }
-
-    public void setCheckOutDate(LocalDate checkOutDate) {
-        this.checkOutDate = checkOutDate;
-    }
-
-    public Instant getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(Instant createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Boolean getIsDeleted() {
+    public Boolean getDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Boolean isDeleted) {
-        this.isDeleted = isDeleted;
+    public void setDeleted(Boolean deleted) {
+        isDeleted = deleted;
+    }
+
+    public Instant getRatingDate() {
+        return ratingDate;
+    }
+
+    public void setRatingDate(Instant ratingDate) {
+        this.ratingDate = ratingDate;
     }
 }
