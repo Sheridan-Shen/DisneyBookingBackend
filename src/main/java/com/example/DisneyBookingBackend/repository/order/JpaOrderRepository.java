@@ -43,4 +43,6 @@ public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
             @Param("hotelId") Integer hotelId,
             @Param("checkIn") LocalDate checkIn,
             @Param("checkOut") LocalDate checkOut);
+
+    List<Order> findByUserIdAndIsDeletedFalse(Integer userId);
 }

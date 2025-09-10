@@ -38,4 +38,8 @@ public class OrderDBRepository {
         }
         return bookedRoomIds;
     }
+
+    public List<Order> getOrdersByUserId(Integer userId) {
+        return jpaOrderRepository.findByUserIdAndIsDeletedFalse(userId);
+    }
 }
