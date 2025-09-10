@@ -1,14 +1,25 @@
 package com.example.DisneyBookingBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import java.time.Instant;
 
 public class Comment {
     private String userName;
     private String comment;
     private Float rating;
+
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "UTC")
     private Instant ratingDate;
 
     public Comment() {
+    }
+
+    public Comment(String userName, String comment, Float rating, Instant ratingDate) {
+        this.userName = userName;
+        this.comment = comment;
+        this.rating = rating;
+        this.ratingDate = ratingDate;
     }
 
     public String getUserName() {

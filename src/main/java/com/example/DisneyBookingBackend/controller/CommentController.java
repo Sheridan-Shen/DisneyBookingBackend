@@ -1,6 +1,8 @@
 package com.example.DisneyBookingBackend.controller;
 
 import com.example.DisneyBookingBackend.models.Comment;
+import com.example.DisneyBookingBackend.service.CommentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,9 +16,11 @@ import java.util.List;
 @RequestMapping("/api/comments")
 @CrossOrigin(origins = "*")
 public class CommentController {
+    @Autowired
+    private CommentService commentService;
+
     @GetMapping
     public ResponseEntity<List<Comment>> getCommentsByHotelIdAndThemeName(@RequestParam Integer hotelId, @RequestParam String themeName) {
-
-        return ResponseEntity.ok().body(null);
+        return ResponseEntity.ok().body(commentService.getCommentsByHotelIdAndThemeName(hotelId, themeName));
     }
 }
