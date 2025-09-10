@@ -5,6 +5,7 @@ import com.example.DisneyBookingBackend.models.dto.OrderRequestDto;
 import com.example.DisneyBookingBackend.models.mapper.OrderMapper;
 import com.example.DisneyBookingBackend.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,8 +25,8 @@ public class OrderController {
 
     @PostMapping()
     public ResponseEntity<String> createOrder(@RequestBody OrderRequestDto orderRequestDto) {
-        Order order  = orderMapper.toOrder(orderRequestDto);
+        Order order = orderMapper.toOrder(orderRequestDto);
         orderService.createOrder(order);
-        return ResponseEntity.ok("Order created successfully");
+        return ResponseEntity.status(HttpStatus.CREATED).body("Order created successfully");
     }
 }
