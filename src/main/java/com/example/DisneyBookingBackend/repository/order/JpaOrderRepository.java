@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
@@ -25,4 +26,21 @@ public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
     List<Comment> getCommentsByHotelIdAndThemeName(
             @Param("hotelId") Integer hotelId,
             @Param("themeName") String themeName);
+
+    /**
+     * 查询在指定日期范围内、指定酒店的所有订单的 room_ids 字符串
+     * 日期重叠条件：订单的 checkIn < 传入的 checkOut && 订单的 checkOut > 传入的 checkIn
+     */
+    @Query(value = """
+            SELECT room_ids
+            FROM booking_order
+            WHERE hotel_id = :hotelId
+              AND check_in < :checkOut
+              AND check_out > :checkIn
+              AND is_deleted = false
+            """, nativeQuery = true)
+    List<String> selectRoomIdsBetweenCheckInAndCheckOut(
+            @Param("hotelId") Integer hotelId,
+            @Param("checkIn") LocalDate checkIn,
+            @Param("checkOut") LocalDate checkOut);
 }

@@ -1,5 +1,6 @@
 package com.example.DisneyBookingBackend.models;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -42,6 +43,7 @@ public class Order {
     private LocalDate checkOut;
 
     @CreationTimestamp
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Shanghai")
     private Instant orderDate;
 
     @Column(precision = 10, scale = 2)

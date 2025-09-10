@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public class RoomDBRepository {
-
     @Autowired
     private JpaRoomRepository jpaRoomRepository;
 
@@ -24,8 +23,16 @@ public class RoomDBRepository {
         return jpaRoomRepository.findAll();
     }
 
-    public List<Integer> getAllRoomIds(Integer hotelId, Integer themeId) {
+    public List<Integer> getAllRoomIdsByHotelIdAndThemeId(Integer hotelId, Integer themeId) {
         return jpaRoomRepository.getAllRoomIdsByHotelIdAndThemeId(hotelId, themeId);
+    }
+
+    public List<Integer> getRoomNumbersByRoomIds(List<Integer> roomIds) {
+        return jpaRoomRepository.getRoomNumbersByRoomIds(roomIds);
+    }
+
+    public String selectRoomNameByRoomId(Integer roomId) {
+        return jpaRoomRepository.selectRoomNameByRoomId(roomId);
     }
 }
 
