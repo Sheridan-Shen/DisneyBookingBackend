@@ -15,5 +15,9 @@ public class UserDBRepository {
     public Optional<User> getUserById(Integer userId) {
         return jpaUserRepository.findById(userId);
     }
+
+    public User save(User user) {
+        return jpaUserRepository.save(user);
+    }
 }
 

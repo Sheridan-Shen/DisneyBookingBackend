@@ -22,4 +22,17 @@ public class UserService {
         Optional<User> userOptional = userDBRepository.getUserById(userId);
         return userOptional.map(user -> userMapper.toUserResponseDto(user)).orElse(null);
     }
+
+    public boolean changePassword(Integer userId, String oldPassword, String newPassword) {
+        Optional<User> userOptional = userDBRepository.getUserById(userId);
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getPassword().equals(oldPassword)) {
+                user.setPassword(newPassword);
+                userDBRepository.save(user);
+                return true;
+            }
+        }
+        return false;
+    }
 }
