@@ -7,6 +7,7 @@ import com.example.DisneyBookingBackend.repository.room.RoomDBRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.Instant;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.List;
@@ -64,6 +65,15 @@ public class OrderService {
 
         order.setStatus(Status.CONFIRMED);
 
+        orderDBRepository.createOrder(order);
+    }
+
+    public void addComment(Integer orderId, Float rating, String comment) {
+        Order order = orderDBRepository.getOrderById(orderId);
+        order.setRating(rating);
+        order.setComment(comment);
+        Instant now = Instant.now();
+        order.setRatingDate(now);
         orderDBRepository.createOrder(order);
     }
 }

@@ -46,4 +46,8 @@ public class OrderDBRepository {
     public List<Float> selectRatingsByHotelIdAndThemeId(Integer hotelId, Integer themeId) {
         return jpaOrderRepository.selectRatingsByHotelIdAndThemeId(hotelId, themeId);
     }
+
+    public Order getOrderById(Integer orderId) {
+        return jpaOrderRepository.findById(orderId).orElse(null);
+    }
 }
