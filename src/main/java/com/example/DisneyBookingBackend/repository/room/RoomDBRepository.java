@@ -4,6 +4,7 @@ import com.example.DisneyBookingBackend.models.Room;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Repository
@@ -33,6 +34,10 @@ public class RoomDBRepository {
 
     public String selectRoomNameByRoomId(Integer roomId) {
         return jpaRoomRepository.selectRoomNameByRoomId(roomId);
+    }
+
+    public List<BigDecimal> selectRoomPricesByHotelId(Integer hotelId) {
+        return jpaRoomRepository.findPricesByHotelId(hotelId);
     }
 }
 

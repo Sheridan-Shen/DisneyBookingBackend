@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.NativeQuery;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface JpaRoomRepository extends JpaRepository<Room, Integer> {
@@ -23,5 +24,8 @@ public interface JpaRoomRepository extends JpaRepository<Room, Integer> {
 
     @Query("SELECT r.roomName FROM Room r WHERE r.roomId = :roomId AND r.isDeleted = false")
     String selectRoomNameByRoomId(@Param("roomId") Integer roomId);
+
+    @Query("SELECT r.price FROM Room r WHERE r.hotelId = :hotelId AND r.isDeleted = false")
+    List<BigDecimal> findPricesByHotelId(@Param("hotelId") Integer hotelId);
 }
 
