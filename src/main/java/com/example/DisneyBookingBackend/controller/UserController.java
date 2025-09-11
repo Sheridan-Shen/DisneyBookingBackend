@@ -5,6 +5,7 @@ import com.example.DisneyBookingBackend.models.dto.OrderResponseDto;
 import com.example.DisneyBookingBackend.models.dto.PasswordChangeRequestDto;
 import com.example.DisneyBookingBackend.models.dto.UserResponseDto;
 import com.example.DisneyBookingBackend.models.dto.FootprintDto;
+import com.example.DisneyBookingBackend.models.dto.AchievementDto;
 import com.example.DisneyBookingBackend.models.mapper.OrderMapper;
 import com.example.DisneyBookingBackend.repository.order.OrderDBRepository;
 import com.example.DisneyBookingBackend.service.UserService;
@@ -65,5 +66,11 @@ public class UserController {
     public ResponseEntity<List<FootprintDto>> getFootprints(@PathVariable Integer userId) {
         List<FootprintDto> footprints = userService.getFootprints(userId);
         return ResponseEntity.ok(footprints);
+    }
+
+    @GetMapping("/{userId}/achievements")
+    public ResponseEntity<List<AchievementDto>> getAchievements(@PathVariable Integer userId) {
+        List<AchievementDto> achievements = userService.getAchievements(userId);
+        return ResponseEntity.ok(achievements);
     }
 }
