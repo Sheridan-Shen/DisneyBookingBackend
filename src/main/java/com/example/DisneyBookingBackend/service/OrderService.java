@@ -76,5 +76,11 @@ public class OrderService {
         order.setRatingDate(now);
         orderDBRepository.createOrder(order);
     }
+
+    public void cancelOrder(Integer orderId) {
+        Order order = orderDBRepository.getOrderById(orderId);
+        order.setStatus(Status.CANCELLED);
+        orderDBRepository.createOrder(order);
+    }
 }
 

@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -39,5 +40,11 @@ public class OrderController {
 
         orderService.addComment(orderId, request.getRating(), request.getComment());
         return ResponseEntity.ok().body("Comment added successfully");
+    }
+
+    @PatchMapping("/{orderId}/cancel")
+    public ResponseEntity<?> cancelOrder(@PathVariable Integer orderId) {
+        orderService.cancelOrder(orderId);
+        return ResponseEntity.ok().body("Order cancelled successfully");
     }
 }
