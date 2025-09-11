@@ -26,6 +26,9 @@ public class OrderService {
     @Autowired
     private ThemeService themeService;
 
+    @Autowired
+    private UserService userService;
+
     public HashSet<Integer> selectRoomIdsBetweenCheckInAndCheckOut(Integer hotelId, LocalDate checkIn, LocalDate checkOut) {
         return orderDBRepository.selectRoomIdsBetweenCheckInAndCheckOut(hotelId, checkIn, checkOut);
     }
@@ -59,9 +62,11 @@ public class OrderService {
 
         order.setRoomName(roomDBRepository.selectRoomNameByRoomId(selectedRoomIds.get(0)));
 
-        // Todo 去数据库请求User信息
-        order.setUserName("Li Hua");
-        order.setPhone("13800138000");
+        //  去数据库请求UserID为1的信息，再设置UserName和联系人
+        String UserName = userService.getUserNameById(order.getUserId());
+        String phone = userService.getPhoneById(order.getUserId());
+        order.setUserName(UserName);
+        order.setPhone(phone);
 
         order.setStatus(Status.CONFIRMED);
 

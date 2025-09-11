@@ -81,4 +81,14 @@ public class UserService {
                 .map(order -> new AchievementDto(order.getThemeName(), formatter.format(order.getOrderDate())))
                 .collect(Collectors.toList());
     }
+
+    public String getUserNameById(Integer userId) {
+        Optional<User> userOptional = userDBRepository.getUserById(userId);
+        return userOptional.map(User::getUserName).orElse(null);
+    }
+
+    public String getPhoneById(Integer userId) {
+Optional<User> userOptional = userDBRepository.getUserById(userId);
+        return userOptional.map(User::getPhone).orElse(null);
+    }
 }
