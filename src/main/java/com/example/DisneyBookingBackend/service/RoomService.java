@@ -113,7 +113,7 @@ public class RoomService {
             SampleRoomDto sampleRoomDto = roomMapper.toSampleRoomDto(rooms.get(0));
 
             List<Float> ratings = orderDBRepository.selectRatingsByHotelIdAndThemeId(rooms.get(0).getHotelId(), theme.getId());
-            float averageRating = 0.0F;
+            float averageRating = 4.0F;
             if (!ratings.isEmpty()) {
                 float sum = 0.0F;
                 for (Float rating : ratings) {
