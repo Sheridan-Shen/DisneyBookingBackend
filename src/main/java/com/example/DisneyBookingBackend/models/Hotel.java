@@ -34,6 +34,8 @@ public class Hotel {
 
     private Boolean isDeleted = false;
 
+    private String imageUrl;
+
     @ManyToMany
     @JoinTable(
             name = "hotel_theme",  // 中间表名
@@ -107,5 +109,13 @@ public class Hotel {
 
     public void setIsDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public String getImageUrl() {
+        return imageUrl;
+    }
+
+    public void setImageUrl(String imageUrl) {
+        this.imageUrl = imageUrl;
     }
 }

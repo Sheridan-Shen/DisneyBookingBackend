@@ -15,6 +15,7 @@ public class HotelMapper {
         BeanUtils.copyProperties(hotel, hotelResponseDto);
         hotelResponseDto.setName(hotel.getHotelName());
         hotelResponseDto.setRating(hotel.getRatings());
+        hotelResponseDto.setImages(hotel.getImageUrl());
         return hotelResponseDto;
     }
 

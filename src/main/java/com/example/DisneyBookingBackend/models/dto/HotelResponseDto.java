@@ -12,8 +12,8 @@ public class HotelResponseDto {
     private String address;
     private String description;
     private Float rating;
-    private BigDecimal minimumPrice = BigDecimal.valueOf(1000);
-    private List<String> images = new ArrayList<>();
+    private BigDecimal minimumPrice = BigDecimal.valueOf(1314);
+    private String images;
     private List<Theme> themes = new ArrayList<>();
 
     public HotelResponseDto() {
@@ -75,11 +75,10 @@ public class HotelResponseDto {
         this.minimumPrice = minimumPrice;
     }
 
-    public List<String> getImages() {
+    public String getImages() {
         return images;
     }
-
-    public void setImages(List<String> images) {
+    public void setImages(String images) {
         this.images = images;
     }
 }
