@@ -2,8 +2,10 @@ package com.example.DisneyBookingBackend.controller;
 
 import com.example.DisneyBookingBackend.models.Order;
 import com.example.DisneyBookingBackend.models.dto.OrderResponseDto;
+import com.example.DisneyBookingBackend.models.dto.UserResponseDto;
 import com.example.DisneyBookingBackend.models.mapper.OrderMapper;
 import com.example.DisneyBookingBackend.repository.order.OrderDBRepository;
+import com.example.DisneyBookingBackend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -23,11 +25,24 @@ public class UserController {
 
     @Autowired
     private OrderMapper orderMapper;
+    
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/{userId}/orders")
     public ResponseEntity<List<OrderResponseDto>> getUserOrders(@PathVariable Integer userId) {
         List<Order> orders = orderDBRepository.getOrdersByUserId(userId);
         List<OrderResponseDto> orderResponseDtos = orderMapper.toOrderResponseDtoList(orders);
         return ResponseEntity.ok(orderResponseDtos);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<UserResponseDto> getUserInfo(@PathVariable Integer userId) {
+        UserResponseDto userResponseDto = userService.getUserById(userId);
+        if (userResponseDto != null) {
+            return ResponseEntity.ok(userResponseDto);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
     }
 }
