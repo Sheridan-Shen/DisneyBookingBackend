@@ -50,4 +50,8 @@ public class OrderDBRepository {
     public Order getOrderById(Integer orderId) {
         return jpaOrderRepository.findById(orderId).orElse(null);
     }
+
+    public List<Float> selectRatingsByHotelId(Integer hotelId) {
+        return jpaOrderRepository.selectRatingsByHotelId(hotelId);
+    }
 }

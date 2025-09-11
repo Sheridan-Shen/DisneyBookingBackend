@@ -2,6 +2,7 @@ package com.example.DisneyBookingBackend.models.mapper;
 
 import com.example.DisneyBookingBackend.models.Hotel;
 import com.example.DisneyBookingBackend.models.dto.HotelResponseDto;
+import com.example.DisneyBookingBackend.repository.order.OrderDBRepository;
 import com.example.DisneyBookingBackend.repository.room.RoomDBRepository;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class HotelMapper {
     @Autowired
     private RoomDBRepository roomDBRepository;
 
+    @Autowired
+    private OrderDBRepository orderDBRepository;
+
     public HotelResponseDto toResponse(Hotel hotel) {
         HotelResponseDto hotelResponseDto = new HotelResponseDto();
         BeanUtils.copyProperties(hotel, hotelResponseDto);
@@ -28,6 +32,17 @@ public class HotelMapper {
                 .min(BigDecimal::compareTo)
                 .orElse(BigDecimal.valueOf(1314));
         hotelResponseDto.setMinimumPrice(minimumPrice);
+
+        List<Float> ratings = orderDBRepository.selectRatingsByHotelId(hotel.getId());
+        if (!ratings.isEmpty()) {
+            float averageRating = (float) ratings.stream()
+                    .mapToDouble(Float::doubleValue)
+                    .average()
+                    .orElse(0.0);
+            hotelResponseDto.setRating(averageRating);
+        } else {
+            hotelResponseDto.setRating(4.0f);
+        }
 
         return hotelResponseDto;
     }

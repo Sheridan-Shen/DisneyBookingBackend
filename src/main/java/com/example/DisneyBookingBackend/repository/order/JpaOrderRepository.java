@@ -54,4 +54,7 @@ public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
     List<Float> selectRatingsByHotelIdAndThemeId(
             @Param("hotelId") Integer hotelId,
             @Param("themeId") Integer themeId);
+
+    @Query("SELECT o.rating FROM Order o WHERE o.hotelId = :hotelId AND o.rating IS NOT NULL AND o.isDeleted = false")
+    List<Float> selectRatingsByHotelId(@Param("hotelId") Integer hotelId);
 }
