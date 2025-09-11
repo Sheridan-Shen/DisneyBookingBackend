@@ -37,6 +37,8 @@ public interface JpaOrderRepository extends JpaRepository<Order, Integer> {
             WHERE hotel_id = :hotelId
               AND check_in < :checkOut
               AND check_out > :checkIn
+              AND status != 'CANCELLED'
+              AND status != 'COMPLETED'
               AND is_deleted = false
             """, nativeQuery = true)
     List<String> selectRoomIdsBetweenCheckInAndCheckOut(
