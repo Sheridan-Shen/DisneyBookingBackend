@@ -4,6 +4,7 @@ import com.example.DisneyBookingBackend.models.Order;
 import com.example.DisneyBookingBackend.models.dto.OrderResponseDto;
 import com.example.DisneyBookingBackend.models.dto.PasswordChangeRequestDto;
 import com.example.DisneyBookingBackend.models.dto.UserResponseDto;
+import com.example.DisneyBookingBackend.models.dto.FootprintDto;
 import com.example.DisneyBookingBackend.models.mapper.OrderMapper;
 import com.example.DisneyBookingBackend.repository.order.OrderDBRepository;
 import com.example.DisneyBookingBackend.service.UserService;
@@ -58,5 +59,11 @@ public class UserController {
         } else {
             return ResponseEntity.badRequest().body(Map.of("status", 400, "message", "Password change failed", "success", false));
         }
+    }
+
+    @GetMapping("/{userId}/footprints")
+    public ResponseEntity<List<FootprintDto>> getFootprints(@PathVariable Integer userId) {
+        List<FootprintDto> footprints = userService.getFootprints(userId);
+        return ResponseEntity.ok(footprints);
     }
 }

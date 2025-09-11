@@ -24,7 +24,6 @@ public class HotelDBRepository {
         return jpaHotelRepository.findHotelsByCityAndThemes(address, themeNames);
     }
 
-
     public Hotel save(Hotel hotel) {
         return jpaHotelRepository.save(hotel);
     }
@@ -37,7 +36,11 @@ public class HotelDBRepository {
         return jpaHotelRepository.getAllHotelCities();
     }
 
-    public  String getHotelNameById(Integer hotelId) {
+    public String getHotelNameById(Integer hotelId) {
         return jpaHotelRepository.getHotelNameById(hotelId);
+    }
+
+    public Hotel getHotelById(Integer hotelId) {
+        return jpaHotelRepository.findById(hotelId).orElse(null);
     }
 }
